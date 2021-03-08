@@ -10,7 +10,7 @@ export default {
     },
     methods:{
         hizoClick(){
-            this.$emit('onClick', {nombre:'Pepito'})
+            this.$emit('onClick', {nombre:this.texto})
         }
         
     }

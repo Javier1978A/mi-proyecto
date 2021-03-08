@@ -2,7 +2,7 @@
       <tr >  
        <td>{{alumno._id}}</td>
        <td>{{alumno.nombreDeUsuario}}</td>
-      <td>{{alumno.email}}</td>
+       <td>{{alumno.email}}</td>
       <td></td>
       <td><Boton @onClick='obtenerClick' texto='editar'/></td>
       <td><Boton @onClick='obtenerClick' texto='eliminar'/></td>
@@ -22,8 +22,8 @@ export default {
         Boton
     },
     methods:{
-        obtenerClick(){
-            this.$emit('onClick', {alumno:this.alumno, opcion:1})
+        obtenerClick(e){
+            this.$emit('onClick', {alumno:this.alumno, nombre:e.nombre})
         
         }
     }
@@ -35,4 +35,3 @@ export default {
 
 
 
-/* v-for="alumno in alumnos" v-bind:key="alumnos.id" */

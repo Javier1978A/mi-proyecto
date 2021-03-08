@@ -1,22 +1,19 @@
 <template>
   <div id="app">
     
-      <NavBar @onShow='ocultarForm' />
+      <NavBar />
     <router-view/>
-  <div v-if ="ocultar">
-    <Formulario  :alumnoSeleccionado='alumnoSeleccionado' @OnClick='ocultarForm'/>
-
-  </div>
+  
   </div>
 </template>
 <script>
 import NavBar from './components/NavBar';
-import Formulario from './components/Formulario';
+
 
 export default {
  components:{
    NavBar,
-   Formulario
+   
    
  },
  data(){

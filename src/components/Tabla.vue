@@ -21,47 +21,31 @@
 import Fila from './Fila';
 
 export default {
-    name:'Alumnos',
+    name:'Tabla',
     components: {
         Fila,
         
     },
     props: {
-    msg: String
+    alumnos:{
+      type:Array,
+    }
     },
     data (){
     return{
-      alumnos:[],
-      alumnoSeleccionado:[]
+      
+      
     }
   },
   methods:{
-    traerDatos(){
-      fetch(" https://phs-class-api.herokuapp.com/usuario",{
-    method:"GET",
-    headers:{
-        "Content-Type": "application/json"
-    },
-    }).then((r)=>{
-        r.json().then(
-            (data)=>{
-                this.alumnos= data.result
-                console.log(data);
-                
-        }
-        )
-    });
-
-      },
-
+    
       obtenerClick(e){
-         this.$root.$emit('onClick',{alumno:this.alumnoSeleccionado})
+         this.$emit('onClick',{alumno:e.alumno, nombre:e.nombre})
           console.log(e);
       }
   },
   mounted(){
-    this.traerDatos();
-    console.log(this.$router)
+    
   }
 }
     

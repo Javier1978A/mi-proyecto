@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Alumnos from '../components/Alumnos'
+import Alumnos from '../views/Alumnos.vue'
 
 Vue.use(VueRouter)
 

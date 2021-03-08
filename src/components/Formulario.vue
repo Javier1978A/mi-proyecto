@@ -2,9 +2,9 @@
 <div class="form">
     <form  action="">
         <input v-model="nombreDeUsuario" type="text">
-        <input type="text">
-        <input type="text">
-        <input type="text">
+        <input v-model="email" type="text">
+        <input v-model="direccion" type="text">
+        <input v-model="telefono" type="text">
         <Boton  texto='Agregar'/>
         <Boton  @onClick ="ocultarForm" texto='Cancelar'/>
     </form>
@@ -15,14 +15,18 @@ import Boton from './Boton';
 export default {
     name:'Formulario',
     props:{
-    texto:String,
-    
+    alumnoSeleccionado:{}
+       
 
 },
 data(){
     return{
-        alumnoSeleccionado:{},
-        nombreDeUsuario:''
+        
+        nombreDeUsuario:this.alumnoSeleccionado.nombreDeUsuario,
+        email:this.alumnoSeleccionado.email,
+        direccion:this.alumnoSeleccionado.direccion,
+        telefono:this.alumnoSeleccionado.telefono
+
     }
 },
 components:{
@@ -34,15 +38,8 @@ ocultarForm(){
 }
     },
     
-    mounted(){
-        this.$root.$on('onClick', (resp)=>{
-            this.alumnoSeleccionado= resp.alumno;
-            this.nombreDeUsuario= this.alumnoSeleccionado.nombreDeUsuario
-       console.log(resp)
-
-   })
-        console.log(this.alumnoSeleccionado);
-    }
+         
+    
 }
 
 </script>
