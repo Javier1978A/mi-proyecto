@@ -1,7 +1,7 @@
 <template>
     <div>
     <Tabla @onClick='obtenerFila' :alumnos='alumnos'/>
-    <Formulario v-if="mostrar" :alumnoSeleccionado='alumnoSeleccionado'/>
+    <Formulario v-if="mostrar" @OnClick='actualizarDatos' :alumnoSeleccionado='alumnoSeleccionado'/>
     
 </div>
 </template>
@@ -61,16 +61,39 @@ export default {
         )
     });
       },
+      modificarAlumno(_id, alumnoModificado){
+        let _this= this;
+fetch("https://phs-class-api.herokuapp.com/usuario/" +_id,{
+  'method': 'PUT', 
+  'headers':  {
+      'Content-Type': 'application/json'
+  },
+  'body': JSON.stringify(alumnoModificado)
+}).then(function (){
+  _this.traerDatos(); 	
+  
+})
+
+  
+      },
       obtenerFila(e){
         this.alumnoSeleccionado=e.alumno;
-          console.log(this.alumnoSeleccionado)
+          
         if(e.nombre == 'editar'){
          this.mostrar=true;
           
         }else{
           this.eliminarDatos(this.alumnoSeleccionado._id); 
         }
-      }
+      },
+      actualizarDatos(e){
+        console.log(e)
+if(e.nombre == 'Agregar'){
+  this.modificarAlumno(this.alumnoSeleccionado._id, e.alumno);
+}else{
+  this.mostrar=false;
+}
+}
   },
   mounted(){
     this.traerDatos();
