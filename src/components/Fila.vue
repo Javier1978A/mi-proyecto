@@ -1,11 +1,12 @@
 <template>
       <tr >  
-       <td>{{alumno._id}}</td>
        <td>{{alumno.nombreDeUsuario}}</td>
        <td>{{alumno.email}}</td>
-      <td></td>
-      <td><Boton @onClick='obtenerClick' texto='editar'/></td>
-      <td><Boton @onClick='obtenerClick' texto='eliminar'/></td>
+       <td>{{alumno.direccion}}</td>
+       <td>{{alumno.telefono}}</td>
+       <td>{{alumno.password}}</td>
+      <td><Boton  class="btn btn-primary" @onClick='obtenerClick' texto='editar'/></td>
+      <td><Boton class="btn btn-danger" @onClick='obtenerClick' texto='eliminar'/></td>
     </tr>
 </template>
 <script>

@@ -5,8 +5,9 @@
         <input v-model="email" type="text">
         <input v-model="direccion" type="text">
         <input v-model="telefono" type="text">
-        <Boton  @onClick ="enviarEvento" texto='Agregar'/>
-        <Boton  @onClick ="enviarEvento" texto='Cancelar'/>
+        <input v-model="password" type="text">
+        <Boton class="btn btn-outline-success" @onClick ="enviarEvento" texto='Aceptar'/>
+        <Boton class="btn btn-outline-danger" @onClick ="enviarEvento" texto='Cancelar'/>
     </form>
 </div>
 </template>
@@ -26,6 +27,7 @@ data(){
         email:this.alumnoSeleccionado.email,
         direccion:this.alumnoSeleccionado.direccion,
         telefono:this.alumnoSeleccionado.telefono,
+        password:this.alumnoSeleccionado.password,
         alumnoModificado:{}
 
     }
@@ -38,7 +40,8 @@ enviarEvento(e){
     let alumnSeleccionado={nombreDeUsuario:this.nombreDeUsuario,
         email:this.email,
         direccion:this.direccion,
-        telefono:this.telefono}
+        telefono:this.telefono, 
+        password:this.password}
     this.$emit('OnClick', {alumno:alumnSeleccionado, nombre:e.nombre})
 }
     },

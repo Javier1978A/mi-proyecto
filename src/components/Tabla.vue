@@ -6,6 +6,7 @@
       <th>Edad</th>
       <th>Ciudad</th>
       <th>N de Alumno</th>
+      <th><Boton  class="btn btn-dark" @onClick='hizoClickAgregar' texto='Agregar Alumno'/></th>
     </tr>
   </thead>
   <tbody>
@@ -19,12 +20,13 @@
 
 <script>
 import Fila from './Fila';
+import Boton from './Boton'
 
 export default {
     name:'Tabla',
     components: {
         Fila,
-        
+        Boton
     },
     props: {
     alumnos:{
@@ -40,9 +42,12 @@ export default {
   methods:{
     
       obtenerClick(e){
-         this.$emit('onClick',{alumno:e.alumno, nombre:e.nombre})
-          console.log(e);
+         this.$emit('onClick',{alumno:e.alumno, nombre:e.nombre})  
+      },
+      hizoClickAgregar(){
+        this.$emit('clickParaFila')
       }
+      
   },
   mounted(){
     
