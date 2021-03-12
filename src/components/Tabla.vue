@@ -9,7 +9,9 @@
       <th><Boton  class="btn btn-dark" @onClick='hizoClickAgregar' texto='Agregar Alumno'/></th>
     </tr>
   </thead>
-  <tbody>
+  <ProgressBar v-if='loading'/>
+  <tbody v-if='!loading'> 
+
     <Fila v-for="alumno in alumnos" v-bind:key="alumno._id" 
     :alumno="alumno" 
     @onClick='obtenerClick'/>
@@ -21,21 +23,23 @@
 <script>
 import Fila from './Fila';
 import Boton from './Boton'
-
+import ProgressBar from './ProgressBar'
 export default {
     name:'Tabla',
     components: {
         Fila,
-        Boton
+        Boton,
+        ProgressBar
     },
     props: {
     alumnos:{
       type:Array,
-    }
+    },
+    loading:Boolean
     },
     data (){
     return{
-      
+     
       
     }
   },
@@ -46,11 +50,14 @@ export default {
       },
       hizoClickAgregar(){
         this.$emit('clickParaFila')
+        
       }
       
   },
   mounted(){
-    
+    if(this.alumnos){
+      this.loading=false
+    }
   }
 }
     

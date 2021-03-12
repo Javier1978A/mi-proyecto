@@ -4,16 +4,15 @@
       @onClick="obtenerFila"
       :alumnos="alumnos"
       @clickParaFila="agregar"
+      :loading='loading'
     />
     <Formulario
       v-if="mostrar"
       @OnClick="actualizarDatos"
       :alumnoSeleccionado="alumnoSeleccionado"
     />
-    <progress-bar
-      :options="options"
-      :value="value"
-      />
+    
+    
   </div>
 </template>
 
@@ -21,11 +20,13 @@
 import Tabla from "../components/Tabla";
 import Formulario from "../components/Formulario";
 
+
 export default {
   name: "Alumnos",
   components: {
     Tabla,
     Formulario,
+    
   },
   props: {
     msg: String,
@@ -35,12 +36,15 @@ export default {
       alumnos: [],
       alumnoSeleccionado: {},
       mostrar: false,
-      opcion:1
+      opcion:1,
+      loading: false
     };
   },
+  
   methods: {
     traerDatos() {
-      fetch(" https://phs-class-api.herokuapp.com/usuario", {
+     this.loading=true
+     fetch(" https://phs-class-api.herokuapp.com/usuario", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +52,7 @@ export default {
       }).then((r) => {
         r.json().then((data) => {
           this.alumnos = data.result;
-          console.log(data);
+          this.loading=false;
         });
       });
     },
@@ -124,29 +128,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-options text: {
-    color: '#FFFFFF',
-    shadowEnable: true,
-    shadowColor: '#000000',
-    fontSize: 14,
-    fontFamily: 'Helvetica',
-    dynamicPosition: false,
-    hideText: false
-  },
-  progress: {
-    color: '#2dbd2d',
-    backgroundColor: '#C0C0C0'
-  },
-  layout: {
-    height: 35,
-    width: 140,
-    verticalTextAlign: 61,
-    horizontalTextAlign: 43,
-    zeroOffset: 0,
-    strokeWidth: 30,
-    progressPadding: 0,
-    type: 'line'
-  }
-}
-</style>
