@@ -1,10 +1,11 @@
 <template>
   <div>
-    <Tabla
+    <Tabla class ='table table-striped container'
       @onClick="obtenerFila"
       :alumnos="alumnos"
       @clickParaFila="agregar"
-      :loading='loading'
+      :loading="loading"
+      :value="value"
     />
     <Formulario
       v-if="mostrar"
@@ -30,6 +31,7 @@ export default {
   },
   props: {
     msg: String,
+    
   },
   data() {
     return {
@@ -37,24 +39,34 @@ export default {
       alumnoSeleccionado: {},
       mostrar: false,
       opcion:1,
-      loading: false
+      loading: false,
+      value:0
     };
   },
   
   methods: {
     traerDatos() {
-     this.loading=true
+    this.loading=true
+    this.mostrar=false
+    this.incrementValue()
      fetch(" https://phs-class-api.herokuapp.com/usuario", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       }).then((r) => {
+        
         r.json().then((data) => {
-          this.alumnos = data.result;
-          this.loading=false;
+          setTimeout(()=>{
+            this.alumnos = data.result;
+            this.loading=false;
+            
+          }, 2000)
+         
+            
         });
       });
+      this.value=0;
     },
     eliminarDatos(_id) {
       fetch(" https://phs-class-api.herokuapp.com/usuario/" + _id, {
@@ -66,6 +78,7 @@ export default {
         r.json().then((data) => {
           console.log(data);
           this.traerDatos();
+          
         });
       });
     },
@@ -105,22 +118,31 @@ export default {
       }
     },
     actualizarDatos(e) {
-      if (this.opcion == 1) {
+      if (this.opcion == 1 && e.nombre !='Cancelar') {
         this.modificarAlumno(this.alumnoSeleccionado._id, e.alumno);
-      }else if (this.opcion ==2){
+      }else if (this.opcion ==2 && e.nombre !='Cancelar'){
         /* let usuario={ nombreDeUsuario:'Sofi', email:'sofi@gmail.com', password:'tsgsve'} */
         //en lugar de usuario paso e.alumno
               console.log(e.alumno)
               this.insertarAlumno(e.alumno);
+              
       } 
-      else if(e.nombre== 'Cancelar') {
+      if(e.nombre== 'Cancelar') {
         this.mostrar = false;
       }
     },
     agregar(){
         this.opcion=2;
         this.mostrar=true;
-    }
+    },
+    incrementValue(){
+            setInterval(() =>{
+                if(this.value < 100){
+                    this.value++;
+                    console.log(this.value)
+                }
+            }, 10)
+        }
   },
   mounted() {
     this.traerDatos();

@@ -14,7 +14,8 @@
     "core-js": "^3.9.1",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
-    "vuejs-progress-bar": "^1.2.4"
+    "vuejs-progress-bar": "^1.2.4",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.11.5",

@@ -1,11 +1,11 @@
 <template>
 <div class="form">
     <form  action="">
-        <input v-model="nombreDeUsuario" type="text">
-        <input v-model="email" type="text">
-        <input v-model="direccion" type="text">
-        <input v-model="telefono" type="text">
-        <input v-model="password" type="text">
+        <input @input="$v.nombre.$touch()" v-model="nombreDeUsuario" type="text">
+        <input @input="$v.email.$touch()" v-model="email" type="text">
+        <input@input="$v.direccion.$touch()" v-model="direccion" type="text">
+        <input @input="$v.telefono.$touch()" v-model="telefono" type="text">
+        <input @input="$v.password.$touch()" v-model="password" type="text">
         <Boton class="btn btn-outline-success" @onClick ="enviarEvento" texto='Aceptar'/>
         <Boton class="btn btn-outline-danger" @onClick ="enviarEvento" texto='Cancelar'/>
     </form>
@@ -13,6 +13,7 @@
 </template>
 <script>
 import Boton from './Boton';
+import {required, email, numeric} from 'vuelidate/lib/validators'
 export default {
     name:'Formulario',
     props:{
@@ -32,6 +33,16 @@ data(){
 
     }
 },
+validations:{
+    nombre: {required},
+    email:{required, email},
+    edad:{required, numeric},
+    direccion:{required},
+    telefono:{required},
+    password:{required}
+
+
+},
 components:{
         Boton
     },
@@ -43,6 +54,11 @@ enviarEvento(e){
         telefono:this.telefono, 
         password:this.password}
     this.$emit('OnClick', {alumno:alumnSeleccionado, nombre:e.nombre})
+    this.nombreDeUsuario=''
+    this.email=''
+    this.direccion=''
+    this.telefono=''
+    this.password=''
 }
     },
     

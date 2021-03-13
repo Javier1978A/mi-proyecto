@@ -1,15 +1,18 @@
 <template>
     <div>
     <thead>
-    <tr>
+    <Boton  class="btn btn-dark mt-2 mb-2 mx-auto" @onClick='hizoClickAgregar' texto='Agregar Alumno'/> 
+    <tr class= 'bg-light'>
       <th>Nombre</th>
       <th>Edad</th>
       <th>Ciudad</th>
       <th>N de Alumno</th>
-      <th><Boton  class="btn btn-dark" @onClick='hizoClickAgregar' texto='Agregar Alumno'/></th>
+      <th>Password</th>
+      <th>Acciones</th>
+      
     </tr>
   </thead>
-  <ProgressBar v-if='loading'/>
+  <ProgressBar v-if='loading' :value='value'/>
   <tbody v-if='!loading'> 
 
     <Fila v-for="alumno in alumnos" v-bind:key="alumno._id" 
@@ -35,6 +38,7 @@ export default {
     alumnos:{
       type:Array,
     },
+    value:Number,
     loading:Boolean
     },
     data (){

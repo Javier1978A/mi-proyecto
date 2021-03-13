@@ -5,8 +5,8 @@
        <td>{{alumno.direccion}}</td>
        <td>{{alumno.telefono}}</td>
        <td>{{alumno.password}}</td>
-      <td><Boton  class="btn btn-primary" @onClick='obtenerClick' texto='editar'/></td>
-      <td><Boton class="btn btn-danger" @onClick='obtenerClick' texto='eliminar'/></td>
+      <td><Boton  class="btn btn-primary mr-2" @onClick='obtenerClick' texto='editar'/>
+      <Boton class="btn btn-danger" @onClick='obtenerClick' texto='eliminar'/></td>
     </tr>
 </template>
 <script>

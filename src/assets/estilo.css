@@ -32,3 +32,6 @@ a{
 .ocultar{
     display: none;
 }
+.alto{
+    height: 40px;
+}

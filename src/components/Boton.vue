@@ -1,12 +1,13 @@
 <template>
-    <button @click.prevent= 'hizoClick'>{{texto}}</button>
+    <button  @click.prevent= 'hizoClick'>{{texto}}</button>
 </template>
 
 <script>
 export default {
     name:'Boton',
     props:{
-    texto:String
+    texto:String,
+    
     },
     methods:{
         hizoClick(){
