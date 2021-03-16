@@ -12,58 +12,52 @@
 </div>
 </template>
 <script>
-import Boton from './Boton';
-import {required, email, numeric} from 'vuelidate/lib/validators'
+import Boton from "./Boton";
+import { required, email, numeric } from "vuelidate/lib/validators";
 export default {
-    name:'Formulario',
-    props:{
-    alumnoSeleccionado:{}
-       
-
-},
-data(){
-    return{
-        
-        nombreDeUsuario:this.alumnoSeleccionado.nombreDeUsuario,
-        email:this.alumnoSeleccionado.email,
-        direccion:this.alumnoSeleccionado.direccion,
-        telefono:this.alumnoSeleccionado.telefono,
-        password:this.alumnoSeleccionado.password,
-        alumnoModificado:{}
-
-    }
-},
-validations:{
-    nombre: {required},
-    email:{required, email},
-    edad:{required, numeric},
-    direccion:{required},
-    telefono:{required},
-    password:{required}
-
-
-},
-components:{
-        Boton
+  name: "Formulario",
+  props: {
+    alumnoSeleccionado: {
+      type: Object,
     },
-    methods:{
-enviarEvento(e){
-    let alumnSeleccionado={nombreDeUsuario:this.nombreDeUsuario,
-        email:this.email,
-        direccion:this.direccion,
-        telefono:this.telefono, 
-        password:this.password}
-    this.$emit('OnClick', {alumno:alumnSeleccionado, nombre:e.nombre})
-    this.nombreDeUsuario=''
-    this.email=''
-    this.direccion=''
-    this.telefono=''
-    this.password=''
-}
+  },
+  data() {
+    return {
+      nombreDeUsuario: this.alumnoSeleccionado.nombreDeUsuario,
+      email: this.alumnoSeleccionado.email,
+      direccion: this.alumnoSeleccionado.direccion,
+      telefono: this.alumnoSeleccionado.telefono,
+      password: this.alumnoSeleccionado.password,
+      alumnoModificado: {},
+    };
+  },
+  validations: {
+    nombre: { required },
+    email: { required, email },
+    edad: { required, numeric },
+    direccion: { required },
+    telefono: { required },
+    password: { required },
+  },
+  components: {
+    Boton,
+  },
+  methods: {
+    enviarEvento(e) {
+      let alumnSeleccionado = {
+        nombreDeUsuario: this.nombreDeUsuario,
+        email: this.email,
+        direccion: this.direccion,
+        telefono: this.telefono,
+        password: this.password,
+      };
+      this.nombreDeUsuario = "";
+      this.email = "";
+      this.direccion = "";
+      this.telefono = "";
+      this.password = "";
+      this.$emit("OnClick", { alumno: alumnSeleccionado, nombre: e.nombre });
     },
-    
-         
-    
-}
-
+  },
+};
 </script>

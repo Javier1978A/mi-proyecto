@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Tabla class ='table table-striped container'
+    <Tabla
+      class="table table-striped container"
       @onClick="obtenerFila"
       :alumnos="alumnos"
       @clickParaFila="agregar"
@@ -10,10 +11,8 @@
     <Formulario
       v-if="mostrar"
       @OnClick="actualizarDatos"
-      :alumnoSeleccionado="alumnoSeleccionado"
+      v-bind:alumnoSeleccionado="alumnoSeleccionado"
     />
-    
-    
   </div>
 </template>
 
@@ -21,52 +20,45 @@
 import Tabla from "../components/Tabla";
 import Formulario from "../components/Formulario";
 
-
 export default {
   name: "Alumnos",
   components: {
     Tabla,
     Formulario,
-    
   },
   props: {
     msg: String,
-    
   },
   data() {
     return {
       alumnos: [],
       alumnoSeleccionado: {},
       mostrar: false,
-      opcion:1,
+      opcion: 1,
       loading: false,
-      value:0
+      value: 0,
     };
   },
-  
+
   methods: {
     traerDatos() {
-    this.loading=true
-    this.mostrar=false
-    this.incrementValue()
-     fetch(" https://phs-class-api.herokuapp.com/usuario", {
+      this.loading = true;
+      this.mostrar = false;
+      this.incrementValue();
+      fetch(" https://phs-class-api.herokuapp.com/usuario", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       }).then((r) => {
-        
         r.json().then((data) => {
-          setTimeout(()=>{
+          setTimeout(() => {
             this.alumnos = data.result;
-            this.loading=false;
-            
-          }, 2000)
-         
-            
+            this.loading = false;
+          }, 2000);
         });
       });
-      this.value=0;
+      this.value = 0;
     },
     eliminarDatos(_id) {
       fetch(" https://phs-class-api.herokuapp.com/usuario/" + _id, {
@@ -78,7 +70,6 @@ export default {
         r.json().then((data) => {
           console.log(data);
           this.traerDatos();
-          
         });
       });
     },
@@ -108,45 +99,47 @@ export default {
     },
 
     obtenerFila(e) {
-      this.alumnoSeleccionado = e.alumno;
-
+      this.mostrar = false;
       if (e.nombre == "editar") {
+        this.alumnoSeleccionado = e.alumno;
         this.mostrar = true;
-        this.opcion=1
+        this.opcion = 1;
       } else {
         this.eliminarDatos(this.alumnoSeleccionado._id);
       }
     },
     actualizarDatos(e) {
-      if (this.opcion == 1 && e.nombre !='Cancelar') {
+      if (this.opcion == 1 && e.nombre != "Cancelar") {
         this.modificarAlumno(this.alumnoSeleccionado._id, e.alumno);
-      }else if (this.opcion ==2 && e.nombre !='Cancelar'){
+      } else if (this.opcion == 2 && e.nombre != "Cancelar") {
         /* let usuario={ nombreDeUsuario:'Sofi', email:'sofi@gmail.com', password:'tsgsve'} */
         //en lugar de usuario paso e.alumno
-              console.log(e.alumno)
-              this.insertarAlumno(e.alumno);
-              
-      } 
-      if(e.nombre== 'Cancelar') {
+        console.log(e.alumno);
+        this.insertarAlumno(e.alumno);
+      }
+      if (e.nombre == "Cancelar") {
         this.mostrar = false;
       }
     },
-    agregar(){
-        this.opcion=2;
-        this.mostrar=true;
+    agregar() {
+      this.opcion = 2;
+      this.mostrar = true;
     },
-    incrementValue(){
-            setInterval(() =>{
-                if(this.value < 100){
-                    this.value++;
-                    console.log(this.value)
-                }
-            }, 10)
+    incrementValue() {
+      setInterval(() => {
+        if (this.value < 100) {
+          this.value++;
+          console.log(this.value);
         }
+      }, 10);
+    },
   },
   mounted() {
     this.traerDatos();
     console.log(this.$router);
+  },
+  updateSelectedAlumn() {
+    return this.alumnoSeleccionado;
   },
 };
 </script>
