@@ -100,13 +100,15 @@ export default {
 
     obtenerFila(e) {
       this.mostrar = false;
-      if (e.nombre == "editar") {
-        this.alumnoSeleccionado = e.alumno;
-        this.mostrar = true;
-        this.opcion = 1;
-      } else {
-        this.eliminarDatos(this.alumnoSeleccionado._id);
-      }
+      setTimeout(() => {
+        if (e.nombre == "editar") {
+          this.alumnoSeleccionado = e.alumno;
+          this.mostrar = true;
+          this.opcion = 1;
+        } else {
+          this.eliminarDatos(this.alumnoSeleccionado._id);
+        }
+      }, 100);
     },
     actualizarDatos(e) {
       if (this.opcion == 1 && e.nombre != "Cancelar") {
