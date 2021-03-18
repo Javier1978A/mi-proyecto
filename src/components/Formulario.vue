@@ -1,15 +1,48 @@
 <template>
-<div class="form">
-    <form  action="">
-        <input @input="$v.nombre.$touch()" v-model="nombreDeUsuario" type="text">
-        <input @input="$v.email.$touch()" v-model="email" type="text">
-        <input@input="$v.direccion.$touch()" v-model="direccion" type="text">
-        <input @input="$v.telefono.$touch()" v-model="telefono" type="text">
-        <input @input="$v.password.$touch()" v-model="password" type="text">
-        <Boton class="btn btn-outline-success" @onClick ="enviarEvento" texto='Aceptar'/>
-        <Boton class="btn btn-outline-danger" @onClick ="enviarEvento" texto='Cancelar'/>
+  <div class="form">
+    <form class="container" action="">
+      <input
+        class="mb-2 form-control"
+        @input="$v.nombre.$touch()"
+        v-model="nombreDeUsuario"
+        type="text"
+      />
+      <input
+        class="mb-2 form-control"
+        @input="$v.email.$touch()"
+        v-model="email"
+        type="text"
+      />
+      <input
+        class="mb-2 form-control"
+        @input="$v.direccion.$touch()"
+        v-model="direccion"
+        type="text"
+      />
+      <input
+        class="mb-2 form-control"
+        @input="$v.telefono.$touch()"
+        v-model="telefono"
+        type="text"
+      />
+      <input
+        class="mb-2 form-control"
+        @input="$v.password.$touch()"
+        v-model="password"
+        type="text"
+      />
+      <Boton
+        class="btn btn-outline-success mr-2"
+        @onClick="enviarEvento"
+        texto="Aceptar"
+      />
+      <Boton
+        class="btn btn-outline-danger"
+        @onClick="enviarEvento"
+        texto="Cancelar"
+      />
     </form>
-</div>
+  </div>
 </template>
 <script>
 import Boton from "./Boton";
