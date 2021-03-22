@@ -45,7 +45,7 @@ export default {
       this.loading = true;
       this.mostrar = false;
       this.incrementValue();
-      fetch(" https://phs-class-api.herokuapp.com/usuario", {
+      fetch("https://phs-class-api.herokuapp.com/alumno?numeroGrupo=1", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export default {
       }).then((r) => {
         r.json().then((data) => {
           setTimeout(() => {
-            this.alumnos = data.result;
+            this.alumnos = data.resultado;
             this.loading = false;
           }, 2000);
         });
@@ -61,12 +61,17 @@ export default {
       this.value = 0;
     },
     eliminarDatos(_id) {
-      fetch(" https://phs-class-api.herokuapp.com/usuario/" + _id, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then((r) => {
+      fetch(
+        "https://phs-class-api.herokuapp.com/alumno/" + _id + "/?numeroGrupo=1",
+        console.log(_id),
+
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      ).then((r) => {
         r.json().then((data) => {
           console.log(data);
           this.traerDatos();
@@ -75,19 +80,22 @@ export default {
     },
     modificarAlumno(_id, alumnoModificado) {
       let _this = this;
-      fetch("https://phs-class-api.herokuapp.com/usuario/" + _id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(alumnoModificado),
-      }).then(function () {
+      fetch(
+        "https://phs-class-api.herokuapp.com/alumno/" + _id + "/?numeroGrupo=1",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(alumnoModificado),
+        }
+      ).then(function () {
         _this.traerDatos();
       });
     },
     insertarAlumno(data) {
       let _this = this;
-      fetch("https://phs-class-api.herokuapp.com/usuario", {
+      fetch("https://phs-class-api.herokuapp.com/alumno?numeroGrupo=1", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -100,16 +108,18 @@ export default {
 
     obtenerFila(e) {
       this.mostrar = false;
-      setTimeout(() => {
-        if (e.nombre == "editar") {
+
+      if (e.nombre == "editar") {
+        setTimeout(() => {
           this.alumnoSeleccionado = e.alumno;
           this.mostrar = true;
           this.opcion = 1;
-        } else {
-          this.eliminarDatos(this.alumnoSeleccionado._id);
-        }
-      }, 100);
+        }, 100);
+      } else {
+        this.eliminarDatos(e.alumno._id);
+      }
     },
+
     actualizarDatos(e) {
       if (this.opcion == 1 && e.nombre != "Cancelar") {
         this.modificarAlumno(this.alumnoSeleccionado._id, e.alumno);
@@ -131,7 +141,7 @@ export default {
       setInterval(() => {
         if (this.value < 100) {
           this.value++;
-          console.log(this.value);
+          /* console.log(this.value); */
         }
       }, 10);
     },

@@ -4,32 +4,37 @@
       <input
         class="mb-2 form-control"
         @input="$v.nombre.$touch()"
-        v-model="nombreDeUsuario"
+        v-model="nombre"
         type="text"
+        placeholder="Nombre"
       />
       <input
         class="mb-2 form-control"
-        @input="$v.email.$touch()"
-        v-model="email"
+        @input="$v.apellido.$touch()"
+        v-model="apellido"
         type="text"
+        placeholder="Apellido"
       />
       <input
         class="mb-2 form-control"
-        @input="$v.direccion.$touch()"
-        v-model="direccion"
+        @input="$v.edad.$touch()"
+        v-model="edad"
         type="text"
+        placeholder="Edad"
       />
       <input
         class="mb-2 form-control"
-        @input="$v.telefono.$touch()"
-        v-model="telefono"
+        @input="$v.ciudad.$touch()"
+        v-model="ciudad"
         type="text"
+        placeholder="Ciudad"
       />
       <input
         class="mb-2 form-control"
-        @input="$v.password.$touch()"
-        v-model="password"
+        @input="$v.nroAlumno.$touch()"
+        v-model="nroAlumno"
         type="text"
+        placeholder="Nº Alumno"
       />
       <Boton
         class="btn btn-outline-success mr-2"
@@ -46,7 +51,7 @@
 </template>
 <script>
 import Boton from "./Boton";
-import { required, email, numeric } from "vuelidate/lib/validators";
+import { required, numeric } from "vuelidate/lib/validators";
 export default {
   name: "Formulario",
   props: {
@@ -56,21 +61,20 @@ export default {
   },
   data() {
     return {
-      nombreDeUsuario: this.alumnoSeleccionado.nombreDeUsuario,
-      email: this.alumnoSeleccionado.email,
-      direccion: this.alumnoSeleccionado.direccion,
-      telefono: this.alumnoSeleccionado.telefono,
-      password: this.alumnoSeleccionado.password,
+      nombre: this.alumnoSeleccionado.nombre,
+      apellido: this.alumnoSeleccionado.apellido,
+      edad: this.alumnoSeleccionado.edad,
+      ciudad: this.alumnoSeleccionado.ciudad,
+      nroAlumno: this.alumnoSeleccionado.nroAlumno,
       alumnoModificado: {},
     };
   },
   validations: {
     nombre: { required },
-    email: { required, email },
+    apellido: { required },
     edad: { required, numeric },
-    direccion: { required },
-    telefono: { required },
-    password: { required },
+    ciudad: { required },
+    nroAlumno: { required },
   },
   components: {
     Boton,
@@ -78,17 +82,17 @@ export default {
   methods: {
     enviarEvento(e) {
       let alumnSeleccionado = {
-        nombreDeUsuario: this.nombreDeUsuario,
-        email: this.email,
-        direccion: this.direccion,
-        telefono: this.telefono,
-        password: this.password,
+        nombre: this.nombre,
+        apellido: this.apellido,
+        edad: this.edad,
+        ciudad: this.ciudad,
+        nroAlumno: this.nroAlumno,
       };
-      this.nombreDeUsuario = "";
-      this.email = "";
-      this.direccion = "";
-      this.telefono = "";
-      this.password = "";
+      this.nombre = "";
+      this.apellido = "";
+      this.edad = "";
+      this.ciudad = "";
+      this.nroAlumno = "";
       this.$emit("OnClick", { alumno: alumnSeleccionado, nombre: e.nombre });
     },
   },

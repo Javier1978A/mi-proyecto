@@ -5,32 +5,34 @@
     </div>
     <div class="card-container">
       <b-card
-        title="Card Title"
+        title="Javier Archuby"
         img-src="../assets/Javi.jpg"
         img-alt="Image"
         img-top
         tag="article"
-        style="max-width: 18rem"
+        style="max-width: 14rem"
         class="mb-2"
       >
         <b-card-text>
-          Mi nombre es Javier Archuby, tengo 43 años. Soy estudiante de
-          Programación Front End y mi hobby es jugar al tennis.
+          <p>Edad: 43 años</p>
+          <p>Hobby: jugar tennis</p>
+          <p>Ciudad: Tandil</p>
         </b-card-text>
       </b-card>
 
       <b-card
-        title="Card Title"
+        title="Sofia Capurro"
         img-src="../assets/Sofi.jpg"
         img-alt="Image"
         img-top
         tag="article"
-        style="max-width: 16rem"
+        style="max-width: 13rem"
         class="mb-2"
       >
         <b-card-text>
-          Mi nombre es Sofía Capurro, tengo 40 años. Soy estudiante de
-          Programación Front End y mi hobby es leer.
+          <p>Edad: 40 años</p>
+          <p>Hobby: leer</p>
+          <p>Ciudad: Tandil</p>
         </b-card-text>
       </b-card>
     </div>
@@ -43,7 +45,7 @@ export default {
   props: {},
   data() {
     return {
-      titulo: "Estudiantes FrontEnd",
+      titulo: "Estudiantes Front-End",
     };
   },
   methods: {
