@@ -10,8 +10,7 @@
         img-alt="Image"
         img-top
         tag="article"
-        style="max-width: 14rem"
-        class="mb-2"
+        class="mb-2 imgStyleJavi"
       >
         <b-card-text>
           <p>Edad: 43 años</p>
@@ -24,10 +23,9 @@
         title="Sofia Capurro"
         img-src="../assets/Sofi.jpg"
         img-alt="Image"
-        img-top
         tag="article"
-        style="max-width: 13rem"
-        class="mb-2"
+        img-top
+        class="mb-2 imgStyleSofi"
       >
         <b-card-text>
           <p>Edad: 40 años</p>

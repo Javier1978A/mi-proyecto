@@ -12,7 +12,7 @@
 .titulo{
     display: flex;
     justify-content: center;
-    color: blue;
+    color: rgb(95, 42, 33);
     
 
 }
@@ -37,4 +37,10 @@ a{
 }
 .alto{
     height: 40px;
+}
+.card-img, .card-img-top{
+    height: 250px;
+    width: 200px;
+   
+    
 }
