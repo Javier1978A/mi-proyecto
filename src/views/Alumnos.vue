@@ -63,7 +63,6 @@ export default {
     eliminarDatos(_id) {
       fetch(
         "https://phs-class-api.herokuapp.com/alumno/" + _id + "/?numeroGrupo=1",
-        console.log(_id),
 
         {
           method: "DELETE",
@@ -124,9 +123,6 @@ export default {
       if (this.opcion == 1 && e.nombre != "Cancelar") {
         this.modificarAlumno(this.alumnoSeleccionado._id, e.alumno);
       } else if (this.opcion == 2 && e.nombre != "Cancelar") {
-        /* let usuario={ nombreDeUsuario:'Sofi', email:'sofi@gmail.com', password:'tsgsve'} */
-        //en lugar de usuario paso e.alumno
-        console.log(e.alumno);
         this.insertarAlumno(e.alumno);
       }
       if (e.nombre == "Cancelar") {

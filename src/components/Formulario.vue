@@ -40,6 +40,7 @@
         class="btn btn-outline-success mr-2"
         @onClick="enviarEvento"
         texto="Aceptar"
+        :disabled="$v.$invalid"
       />
       <Boton
         class="btn btn-outline-danger"
@@ -88,11 +89,11 @@ export default {
         ciudad: this.ciudad,
         nroAlumno: this.nroAlumno,
       };
-      this.nombre = "";
-      this.apellido = "";
-      this.edad = "";
-      this.ciudad = "";
-      this.nroAlumno = "";
+      this.alumnoSeleccionado.nombre = "";
+      this.alumnoSeleccionado.apellido = "";
+      this.alumnoSeleccionado.edad = "";
+      this.alumnoSeleccionado.ciudad = "";
+      this.alumnoSeleccionado.nroAlumno = "";
       this.$emit("OnClick", { alumno: alumnSeleccionado, nombre: e.nombre });
     },
   },
