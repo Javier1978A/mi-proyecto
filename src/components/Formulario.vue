@@ -36,6 +36,10 @@
         type="text"
         placeholder="Nº Alumno"
       />
+      <p v-if="!nroValido" class="alert alert-danger">
+        Ingrese un Numero de seis digitos
+      </p>
+
       <Boton
         class="btn btn-outline-success mr-2"
         @onClick="enviarEvento"
@@ -68,6 +72,7 @@ export default {
       ciudad: this.alumnoSeleccionado.ciudad,
       nroAlumno: this.alumnoSeleccionado.nroAlumno,
       alumnoModificado: {},
+      nroValido: true,
     };
   },
   validations: {
@@ -75,26 +80,36 @@ export default {
     apellido: { required },
     edad: { required, numeric },
     ciudad: { required },
-    nroAlumno: { required },
+    nroAlumno: { required, numeric },
   },
   components: {
     Boton,
   },
   methods: {
     enviarEvento(e) {
-      let alumnSeleccionado = {
-        nombre: this.nombre,
-        apellido: this.apellido,
-        edad: this.edad,
-        ciudad: this.ciudad,
-        nroAlumno: this.nroAlumno,
-      };
-      this.alumnoSeleccionado.nombre = "";
-      this.alumnoSeleccionado.apellido = "";
-      this.alumnoSeleccionado.edad = "";
-      this.alumnoSeleccionado.ciudad = "";
-      this.alumnoSeleccionado.nroAlumno = "";
-      this.$emit("OnClick", { alumno: alumnSeleccionado, nombre: e.nombre });
+      console.log(this.validNroAlumno(this.nroAlumno));
+      if (this.validNroAlumno(this.nroAlumno)) {
+        this.nroValido = true;
+        let alumnSeleccionado = {
+          nombre: this.nombre,
+          apellido: this.apellido,
+          edad: this.edad,
+          ciudad: this.ciudad,
+          nroAlumno: this.nroAlumno,
+        };
+        this.alumnoSeleccionado.nombre = "";
+        this.alumnoSeleccionado.apellido = "";
+        this.alumnoSeleccionado.edad = "";
+        this.alumnoSeleccionado.ciudad = "";
+        this.alumnoSeleccionado.nroAlumno = "";
+        this.$emit("OnClick", { alumno: alumnSeleccionado, nombre: e.nombre });
+      } else {
+        this.nroValido = false;
+      }
+    },
+    validNroAlumno(nroAlumno) {
+      let re = /^(\s*\d{6}\s*)(,\s*\d{6}\s*)*,?\s*$/;
+      return re.test(nroAlumno);
     },
   },
 };

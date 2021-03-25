@@ -1,50 +1,37 @@
 <template>
   <div id="app">
-    
-      <NavBar />
-      
-      
-    <router-view/>
-  
+    <NavBar />
+
+    <router-view />
   </div>
 </template>
 <script>
-import NavBar from './components/NavBar';
-
+import NavBar from "./components/NavBar";
 
 export default {
- components:{
-   NavBar,
-   
-   
- },
- data(){
-   return {
-     ocultar:true,
-     alumnoSeleccionado:{}
-     
-   }
-  
- },
- mounted(){
-   this.$root.$on('onClick', (resp)=>{
-            if(resp.opcion ==1){
-              this.ocultar= !this.ocultar
-            }
-       console.log(resp.alumno)
-
-   })
-   
-
- },
- methods:{
-   ocultarForm(e){
-  this.ocultar = e
-   }
-   },
- }
-
-
+  components: {
+    NavBar,
+  },
+  data() {
+    return {
+      ocultar: true,
+      alumnoSeleccionado: {},
+    };
+  },
+  mounted() {
+    this.$root.$on("onClick", (resp) => {
+      if (resp.opcion == 1) {
+        this.ocultar = !this.ocultar;
+      }
+      console.log(resp.alumno);
+    });
+  },
+  methods: {
+    ocultarForm(e) {
+      this.ocultar = e;
+    },
+  },
+};
 </script>
 <style lang="scss">
 #app {

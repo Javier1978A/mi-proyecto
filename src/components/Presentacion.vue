@@ -10,7 +10,7 @@
         img-alt="Image"
         img-top
         tag="article"
-        class="mb-2 imgStyleJavi"
+        class="mb-2"
       >
         <b-card-text>
           <p>Edad: 43 años</p>
@@ -25,7 +25,7 @@
         img-alt="Image"
         tag="article"
         img-top
-        class="mb-2 imgStyleSofi"
+        class="mb-2"
       >
         <b-card-text>
           <p>Edad: 40 años</p>
